@@ -75,7 +75,10 @@ class Line :
             indentation["required"] = True 
             indentation["block"] = self.line[0]
             loop = Loop(self.line)
-            return loop.check()
+            errors = loop.check()
+            if errors :
+                return errors 
+            assignVaribales(loop.giveVariable())
 
     def printCheck(self):
         if self.line[0] == "print":

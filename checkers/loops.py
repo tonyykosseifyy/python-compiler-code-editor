@@ -6,7 +6,9 @@ class Loop :
     
     def checkFor(self):
         return checkBasic(self.line) 
-            
+        
+    def giveVariable(self):
+        return {self.line[1] : " " }
 
     def checkWhile(self):
         if self.line[0] == "while" :
