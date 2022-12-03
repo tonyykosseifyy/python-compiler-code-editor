@@ -1,7 +1,5 @@
 import re 
 
-
-
 class Variable:
     def __init__(self , line, file_variables):
         self.line = line
