@@ -76,8 +76,9 @@ class Line :
             indentation["block"] = self.line[0]
             loop = Loop(self.line)
             return loop.check()
+
     def printCheck(self):
-        if self.line[0] == "print(":
+        if self.line[0] == "print":
             p = PrintCheck(self.line, file_variables)
             return p.check()
 
@@ -85,7 +86,7 @@ class Line :
         statement = Statement(self.line , file_variables)
         return statement.check()
 
-for line in lines :
-    print(Line(line).check())
+for line in range(len(lines)) :
+    print(line+1,Line(lines[line]).check())
 
 print(file_variables)
