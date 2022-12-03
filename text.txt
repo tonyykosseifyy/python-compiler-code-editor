@@ -1,0 +1,31 @@
+= = 3 
+- = 4 
+a/ = 4
+-a = 3
+0a = 5
+5 = 5
+'a = 3
+c,d = 4,5
+,a = 4 
+a, = 4
+b = 4
+d = 7
+a = ,5
+a,b,c = 1,2,3,4
+a,b,c,d = 1,2,3
+    if c > d  
+    if c = b :
+    if x > y :
+c == y 
+x = y 
+c = x 
+t = c c d 
+t = c t c
+h : z / y 
+print( v )
+if i % 2 = 0 :
+    else x > y
+        for i in rang ( 5 ; 9 )
+            for i in range ( 5 : 9 )
+                print( i )
+for i in range ( 5 : 9 ) :
