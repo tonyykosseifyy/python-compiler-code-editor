@@ -1,4 +1,5 @@
 from checkers.global_checkers import checkVariableExistence, python_operators
+import re 
 
 class Statement:
     def __init__(self , line , file_variables):
@@ -7,6 +8,7 @@ class Statement:
 
     def check(self):
         return (
+            checkPrint(self.line) or
             checkOperators(self.line , self.file_variables) or 
             checkAfterEqualityOperator(self.line , self.file_variables) or 
             checkMispelledEquality(self.line)
@@ -32,3 +34,10 @@ def checkAfterEqualityOperator(line, file_variables) :
 def checkMispelledEquality(line):
     if line[1] == ":" :
         return "SyntaxError: invalid syntax"
+
+def checkPrint(line):
+    if len(line) == 1:
+        return False 
+        
+
+#not (re.search(regex, line)):

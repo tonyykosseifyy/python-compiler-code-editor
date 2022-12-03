@@ -31,6 +31,9 @@ def stripArray(line):
     return line
 
 def stripFromEnd(line):
+    print(line)
+    if len(line) == 1 :
+        return line
     i = len(line) - 1 
     while line[i] == "":
         i-= 1 

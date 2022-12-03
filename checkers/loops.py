@@ -18,6 +18,8 @@ class Loop :
         return self.checkFor() or self.checkWhile()
 
 def checkBasic(line):
+    if len(line) < 6 :
+        return "SyntaxError: invalid syntax"
     if line[0] == "for":
         if line[2] != "in" or line[3] != "range" :   
             return "SyntaxError: invalid syntax"

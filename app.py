@@ -4,22 +4,21 @@ from tkinter.ttk import *
 import ctypes
 import re
 from main import * 
-
+from test import convertTabToIndent
 # Increas Dots Per inch so it looks sharper
 ctypes.windll.shcore.SetProcessDpiAwareness(True)
 
 window = tk.Tk()
 window.title("TK Code Editor")
 
-window.rowconfigure(1, minsize=700, weight=1)
-window.columnconfigure(1, minsize=900, weight=1)
+window.rowconfigure(1, minsize=500, weight=1)
+window.columnconfigure(1, minsize=500, weight=1)
 
 style = Style()
 style.configure('TButton', font =
                ('calibri', 16, 'bold'),
                     borderwidth = '4')
 style.configure('TFrame', background='#2A2A2A')
-
 style.map('TButton')
 
 normal = "#EAEAEA"
@@ -75,7 +74,7 @@ def save_file():
     with open(filepath, mode="w", encoding="utf-8") as output_file:
         text = editArea.get("1.0", tk.END)
         output_file.write(text)
-    window.title(f"Simple Text Editor - {filepath}")
+    window.title(f"TK Code Editor - {filepath}")
 
 
 frm_buttons = Frame(window,borderwidth=1, width=400 )
@@ -110,17 +109,7 @@ repl = [
 
 
 # Insert some Standard Text into the Edit Area
-editArea.insert('1.0', """from argparse import ArgumentParser
-from random import shuffle, choice
-import string
-
-# Setting up the Argument Parser
-parser = ArgumentParser(
-
-    prog='Password Generator.',
-    description='Generate any number of passwords with this tool.'
-)
-""")
+##editArea.insert('1.0', "a = b")
 
 
 def search_re(pattern, text):
@@ -147,15 +136,20 @@ def changes(event=None):
             i+=1
 
 
-def run() :
-    lines = editArea.get(1.0, tk.END)
+def run(event=None) :
+    line_text = editArea.get(1.0,tk.END)
+    line_text = line_text.split("\n")
+    errors.clear()
+    line_text.pop(-1)
+    Line.count = 1
+    print("line text", line_text)
+    for line in range(len(line_text)) :
+        if len(line_text[line]) == 0 and line_text[line] == "":
+            continue 
+        else : errors.append(Line(convertTabToIndent(line_text[line])).check())
+    print("errors",  errors)
 
-
-editArea.bind('<KeyRelease>', changes, run)
-
-
-changes()
-
-
+editArea.bind('<KeyRelease>', changes)
+editArea.bind("<Return>" , run )
 
 window.mainloop()

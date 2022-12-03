@@ -12,7 +12,7 @@ def readFromFile(file_name):
         line_list.append(line.split("\n")[0])
     return line_list
 
-lines = readFromFile("./text.txt")
+##lines = readFromFile("./text.txt")
 file_variables = {}
 indentation = {"indent": 0 , "required": False , "block": "none"}
 
@@ -88,8 +88,10 @@ class Line :
     def checkStatement(self):
         statement = Statement(self.line , file_variables)
         return statement.check()
-
+"""
 for line in range(len(lines)) :
     print(line+1,Line(lines[line]).check())
+"""
+
 
 print(file_variables)

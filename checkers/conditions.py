@@ -11,7 +11,8 @@ class Condition :
         return ( 
             checkEnd(self.line) or 
             checkEqualityCondition(self.line) or 
-            checkVariableExistence(self.line, self.file_variables)
+            checkVariableExistence(self.line, self.file_variables)or
+            checkElse(self.line)
         )
     
 
@@ -25,3 +26,6 @@ def checkEqualityCondition(line):
         if "==" not in line and "!=" not in line and ">=" not in line and "<=" not in line :
             return "SyntaxError: cannot assign to literal here. Maybe you meant '==' instead of '='?" 
  
+def checkElse(line):
+    if line[0] == "else" and line[1] != ":" :
+        return "Inavalid Syntax"

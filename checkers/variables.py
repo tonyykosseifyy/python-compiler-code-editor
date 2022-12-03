@@ -13,8 +13,7 @@ class Variable:
             stringVariable(self.line) or 
             checkComma(self.line) or 
             checkCommaAfterEquality(self.line) or 
-            checkValuesToUnpack(self.line) or 
-            checkPossibleRegexErrors(" ".join(self.line))
+            checkValuesToUnpack(self.line)
         )
 
     def giveVariables(self):
@@ -84,11 +83,3 @@ def checkValuesToUnpack(line):
         if len(values_list) > len(variable_list) :
             return "ValueError: too many values to unpack (expected " +  str(len(variable_list)) + " got " + str(len(values_list)) + ")"
 
-
-
-
-def checkPossibleRegexErrors(line):
-    regex = r"(\w+)\s*=\s*[a-zA-Z0-9_.]+"
-    if not (re.search(regex, line)):
-        return "SyntaxError: invalid syntax regex"
-    
