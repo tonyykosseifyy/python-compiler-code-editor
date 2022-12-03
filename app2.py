@@ -64,7 +64,6 @@ parser = ArgumentParser(
     description='Generate any number of passwords with this tool.'
 )
 """)
-list = ["amigo" , "ami"]
 
 
 def search_re(pattern, text):

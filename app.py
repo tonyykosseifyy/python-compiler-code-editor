@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter.filedialog import askopenfilename, asksaveasfilename
+from tkinter.ttk import *
 
 def open_file():
     filepath = askopenfilename(
@@ -31,12 +32,21 @@ window.title("Simple Text Editor")
 window.rowconfigure(0, minsize=800, weight=1)
 window.columnconfigure(1, minsize=800, weight=1)
 
-txt_edit = tk.Text(window)
-frm_buttons = tk.Frame(window, relief=tk.RAISED, bd=2)
-btn_open = tk.Button(frm_buttons, text="Open", command=open_file)
-btn_save = tk.Button(frm_buttons, text="Save As...", command=save_file)
+style = Style()
+ 
+style.configure('TButton', font =
+               ('calibri', 16, 'bold'),
+                    borderwidth = '4')
+ 
+style.map('TButton', foreground = [('active', '!disabled', 'green')],
+                     background = [('active', 'black')])
 
-btn_open.grid(row=0, column=0, sticky="ew", padx=15, pady=15)
+txt_edit = tk.Text(window)
+frm_buttons = tk.Frame(window, relief=tk.RAISED, bd=2 , bg="#2A2A2A" )
+btn_open = Button(frm_buttons, text="Open", command=open_file)
+btn_save = Button(frm_buttons, text="Save As...", command=save_file)
+
+btn_open.grid(row=0, column=0, sticky="ew", padx=15, pady=5)
 btn_save.grid(row=1, column=0, sticky="ew", padx=15)
 
 frm_buttons.grid(row=0, column=0, sticky="ns")
