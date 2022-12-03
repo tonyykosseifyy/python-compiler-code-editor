@@ -1,16 +1,20 @@
 from tkinter import *
 import ctypes
 import re
+import tkinter as tk
+from tkinter.filedialog import askopenfilename, asksaveasfilename
+from tkinter.ttk import *
 
 # Increas Dots Per inch so it looks sharper
 ctypes.windll.shcore.SetProcessDpiAwareness(True)
+
 
 root = Tk()
 root.geometry('700x700')
 
 previousText = ''
 
-# Define colors for the variouse types of tokens
+
 normal = "#EAEAEA"
 keywords = "#EA5F5F"
 comments = "#5FEAA5"
@@ -47,10 +51,7 @@ editArea = Text(
     borderwidth=30,
     font=font
 )
-editArea.pack(
-    fill=BOTH,
-    expand=1
-)
+editArea.pack(fill=BOTH,expand=1)
 
 # Insert some Standard Text into the Edit Area
 editArea.insert('1.0', """from argparse import ArgumentParser
@@ -90,6 +91,7 @@ def changes(event=None):
             i+=1
 
 editArea.bind('<KeyRelease>', changes)
-
 changes()
+
+
 root.mainloop()
