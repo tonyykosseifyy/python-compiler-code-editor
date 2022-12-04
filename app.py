@@ -135,9 +135,10 @@ def changes(event=None):
             editArea.tag_config(f'{i}', foreground=color)
             i+=1
     tagErrors()
+
 def tagErrors(event=None) :
     for i in range(len(errors)) :
-        if errors[i] != None :
+        if errors[i] != None and errors[i] != True :
             editArea.tag_add("highlitline", f'{i+1}.0', f'{i+2}.0')
             editArea.tag_config("highlitline", background="red")
 

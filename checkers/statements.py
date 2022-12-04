@@ -7,12 +7,12 @@ class Statement:
         self.file_variables = file_variables
 
     def check(self):
-        return (
-            checkPrint(self.line) or
-            checkOperators(self.line , self.file_variables) or 
-            checkAfterEqualityOperator(self.line , self.file_variables) or 
-            checkMispelledEquality(self.line)
-        )
+            return (
+                checkPrint(self.line) or
+                checkOperators(self.line , self.file_variables) or 
+                checkAfterEqualityOperator(self.line , self.file_variables) or 
+                checkMispelledEquality(self.line)
+            )
 
 
 def checkOperators(line , file_variables):

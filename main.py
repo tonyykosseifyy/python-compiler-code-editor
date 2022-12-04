@@ -52,7 +52,7 @@ class Line :
         return self.checkIndent() or self.checkVariable() or self.checkConditions() or self.checkStatement() or self.printCheck() or self.loopCheck()
     
     def checkConditions(self):
-        if self.line[0] == "if" or self.line[0] == "elif" or self.line[0] == "else":
+        if self.line[0] == "if" or self.line[0] == "elif" or self.line[0] == "else" :
             indentation["indent"]+=1
             indentation["required"] = True 
             indentation["block"] = self.line[0]
@@ -87,8 +87,10 @@ class Line :
             return p.check()
 
     def checkStatement(self):
-        statement = Statement(self.line , file_variables)
-        return statement.check()
+        if self.line[0] != "if" and self.line[0] != "elif" and self.line[0] != "else":
+            statement = Statement(self.line , file_variables)
+            return statement.check()
+        return None 
 """
 for line in range(len(lines)) :
     print(line+1,Line(lines[line]).check())

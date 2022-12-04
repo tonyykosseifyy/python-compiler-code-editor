@@ -1,7 +1,6 @@
 from checkers.global_checkers import *
 
 
-
 class Condition :
     def __init__(self, line, file_variables):
         self.line = line 
@@ -11,7 +10,7 @@ class Condition :
         return ( 
             checkEnd(self.line) or 
             checkEqualityCondition(self.line) or 
-            checkVariableExistence(self.line, self.file_variables)or
+            checkVariableExistence(self.line, self.file_variables) or
             checkElse(self.line)
         )
     
@@ -27,5 +26,6 @@ def checkEqualityCondition(line):
             return "SyntaxError: cannot assign to literal here. Maybe you meant '==' instead of '='?" 
  
 def checkElse(line):
-    if line[0] == "else" and line[1] != ":" :
-        return "Inavalid Syntax"
+    if line[0] == "else" :
+        if line[1] != ":" :
+            return "Inavalid Syntax"
