@@ -72,11 +72,14 @@ def checkCommaAfterEquality(line):
             return "SyntaxError: invalid syntax"
 
 
+def checkCommaBeforeAfter(line):
+    pass 
+
 def checkValuesToUnpack(line):
     if "," in line[2] and "," in line[0] :
         variable_list = line[0].split(",")
         values_list = line[2].split(",")
-
+        print(variable_list, values_list)
         if len(variable_list) > len(values_list):
             return "ValueError: too many values to unpack (expected " +  str(len(variable_list)) + ")"  
     

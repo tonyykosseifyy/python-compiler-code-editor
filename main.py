@@ -40,7 +40,7 @@ class Line :
             indentation["required"] = False 
 
         elif line_ind <= ( 4 * indentation["indent"]) and not indentation["required"] and line_ind % 4 == 0 :
-            indentation["indent"] = line_ind
+            indentation["indent"] = line_ind // 4
         
         elif  line_ind <= ( 4 * indentation["indent"]) and not indentation["required"] and line_ind % 4 != 0:
             return "IndentationError: unindent does not match any outer indentation level"

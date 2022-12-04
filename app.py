@@ -140,7 +140,7 @@ def tagErrors(event=None) :
     for i in range(len(errors)) :
         if errors[i] != None and errors[i] != True :
             editArea.tag_add("highlitline", f'{i+1}.0', f'{i+2}.0')
-            editArea.tag_config("highlitline", background="red")
+            editArea.tag_config("highlitline", background="red", foreground="white")
 
 def run(event=None) :
     line_text = editArea.get(1.0,tk.END)
@@ -153,6 +153,7 @@ def run(event=None) :
     Line.line_count = 1
     print("line text", line_text)
     for line in range(len(line_text)) :
+        print(indentation)
         if len(line_text[line]) == 0 and line_text[line] == "":
             errors.append(None)
             Line.line_count +=1  
