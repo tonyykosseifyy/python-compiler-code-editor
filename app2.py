@@ -1,3 +1,5 @@
+"""
+
 from tkinter import *
 import ctypes
 import re
@@ -54,7 +56,7 @@ editArea = Text(
 editArea.pack(fill=BOTH,expand=1)
 
 # Insert some Standard Text into the Edit Area
-editArea.insert('1.0', """from argparse import ArgumentParser
+editArea.insert('1.0', ""from argparse import ArgumentParser
 from random import shuffle, choice
 import string
 
@@ -64,7 +66,7 @@ parser = ArgumentParser(
     prog='Password Generator.',
     description='Generate any number of passwords with this tool.'
 )
-""")
+"")
 
 
 def search_re(pattern, text):
@@ -95,3 +97,4 @@ changes()
 
 
 root.mainloop()
+"""

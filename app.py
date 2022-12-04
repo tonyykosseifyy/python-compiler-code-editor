@@ -141,11 +141,14 @@ def run(event=None) :
     line_text = line_text.split("\n")
     errors.clear()
     line_text.pop(-1)
-    Line.count = 1
+    indentation["indent"] = 0 
+    indentation["required"] = False 
+    indentation["block"] = "none"
+    Line.line_count = 1
     print("line text", line_text)
     for line in range(len(line_text)) :
         if len(line_text[line]) == 0 and line_text[line] == "":
-            continue 
+            errors.append(None) 
         else : errors.append(Line(convertTabToIndent(line_text[line])).check())
     print("errors",  errors)
 
