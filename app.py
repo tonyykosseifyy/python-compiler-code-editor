@@ -87,6 +87,10 @@ output_area.grid(row=1 , column=1,columnspan=2, sticky="nsew")
 output_lbl = Label(output_area, text="Output" , foreground="white", background="#2A2A2A")
 output_lbl.pack(side="top")
 
+output_text = tk.Text(output_area,font=font, foreground="red" , background="#2A2A2A")
+output_text.pack(fill=tk.BOTH,expand=1)
+
+
 btn_open.grid(row=0, column=0, sticky="ew", padx=15, pady=30)
 btn_save.grid(row=1, column=0, sticky="ew", padx=15)
 btn_run.grid(row=2, column=0, sticky="ew", padx=15, pady=30,)
@@ -135,12 +139,24 @@ def changes(event=None):
             editArea.tag_config(f'{i}', foreground=color)
             i+=1
     tagErrors()
+    outputErrors()
 
 def tagErrors(event=None) :
     for i in range(len(errors)) :
         if errors[i] != None and errors[i] != True :
             editArea.tag_add("highlitline", f'{i+1}.0', f'{i+2}.0')
             editArea.tag_config("highlitline", background="red", foreground="white")
+
+def outputErrors(event=None):
+    output_text.config(state="normal")
+    output_text.delete("1.0","end")
+    errors_text = ""
+    for i in range(len(errors)) :
+        if errors[i] != None and errors[i] != True :
+            errors_text+=f'{i+1} - {errors[i]}\n' 
+    
+    output_text.insert("1.0" , errors_text)
+    output_text.config(state="disabled") 
 
 def run(event=None) :
     line_text = editArea.get(1.0,tk.END)
