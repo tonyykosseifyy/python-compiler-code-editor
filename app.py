@@ -1,4 +1,5 @@
 import tkinter as tk
+import tkinter.scrolledtext as tkscrolled
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 from tkinter.ttk import *
 import ctypes
@@ -81,14 +82,21 @@ frm_buttons = Frame(window,borderwidth=1, width=400 )
 btn_open = Button(frm_buttons, text="Open", command=open_file)
 btn_save = Button(frm_buttons, text="Save As...", command=save_file)
 btn_run = Button(frm_buttons, text="Run")
-output_area = tk.Frame(window, height=300, borderwidth=2 , relief=tk.RAISED, background="#2A2A2A")
+
+output_area = tk.Frame(window, height=600, borderwidth=2 , relief=tk.RAISED, background="#2A2A2A")
 output_area.grid(row=1 , column=1,columnspan=2, sticky="nsew")
 
 output_lbl = Label(output_area, text="Output" , foreground="white", background="#2A2A2A")
 output_lbl.pack(side="top")
 
+
 output_text = tk.Text(output_area,font=font, foreground="red" , background="#2A2A2A")
-output_text.pack(fill=tk.BOTH,expand=1)
+scrollbar = Scrollbar(output_area, command=output_text.yview)
+
+
+scrollbar.pack(side='right', fill='y')
+
+output_text.pack(fill=tk.BOTH)
 
 
 btn_open.grid(row=0, column=0, sticky="ew", padx=15, pady=30)
