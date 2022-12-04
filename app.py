@@ -10,7 +10,7 @@ from test import convertTabToIndent
 ctypes.windll.shcore.SetProcessDpiAwareness(True)
 
 window = tk.Tk()
-window.title("TK Code Editor")
+window.title("TK Code Editor - d3if version")
 
 window.rowconfigure(0,minsize=500, weight=1)
 window.rowconfigure(1, minsize=200 )
@@ -63,7 +63,7 @@ def open_file():
     with open(filepath, mode="r", encoding="utf-8") as input_file:
         text = input_file.read()
         editArea.insert(tk.END, text)
-    window.title(f"TK Text Editor - {filepath}")
+    window.title(f"TK Text Editor -d3if version1.0- {filepath}")
 
 def save_file():
     filepath = asksaveasfilename(
@@ -75,7 +75,7 @@ def save_file():
     with open(filepath, mode="w", encoding="utf-8") as output_file:
         text = editArea.get("1.0", tk.END)
         output_file.write(text)
-    window.title(f"TK Code Editor - {filepath}")
+    window.title(f"TK Code Editor -d3if version1.0- {filepath}")
 
 
 frm_buttons = Frame(window,borderwidth=1, width=400 )

@@ -17,7 +17,3 @@ def convertTabToIndent(line):
         return str 
 
     return line 
-
-
-print(convertTabToIndent("print(i)"))
-
