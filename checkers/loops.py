@@ -22,10 +22,8 @@ def checkBasic(line):
         return "SyntaxError: invalid syntax"
     if line[0] == "for":
         if line[2] != "in" or line[3] != "range" :   
-            return "SyntaxError: invalid syntax"
-        if line[-1] != ":":
-            return "SyntaxError: invalid syntax"        
+            return "SyntaxError: invalid syntax"      
 
-        if line[-1] != ":":
+        if line[-1] != ":" and line[-1] != "):":
             return "SyntaxError: expected ':'"
             
