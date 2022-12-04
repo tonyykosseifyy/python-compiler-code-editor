@@ -82,7 +82,7 @@ class Line :
             assignVaribales(loop.giveVariable())
 
     def printCheck(self):
-        if self.line[0] == "print":
+        if self.line[0] == "print" or self.line[0] == "print(":
             p = PrintCheck(self.line, file_variables)
             return p.check()
 

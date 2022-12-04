@@ -37,7 +37,7 @@ def checkMispelledEquality(line):
 
 def checkPrint(line):
     if len(line) == 1:
-        return False 
+        return True 
         
 
 #not (re.search(regex, line)):

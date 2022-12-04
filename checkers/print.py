@@ -4,9 +4,12 @@ class PrintCheck :
         self.file_variables = files_variables
 
     def check(self):
-        return None
-
-def check():
-        if self.line[1] not in self.file_variables and self.line[1][0] != "'" and self.line[1][0] != '"':
-            return "NameError: name '" + self.line[1] + "' is not defined"
+        if self.line[0] == "print" :
+            index = 2
+        else :
+            index = 1
     
+        if self.line[index] not in self.file_variables and self.line[index][0] != "'" and self.line[index][0] != '"':
+            return "NameError: name '" + self.line[index] + "' is not defined"
+    
+
