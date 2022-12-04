@@ -29,7 +29,6 @@ class Line :
         Line.line_count+=1
     
     def checkIndent(self):
-        print("indent: ",self.line)
         line_ind = getIndentation(self.line)
         if line_ind > 0 and indentation["indent"] == 0 :
             return "IndentationError: unexpected indent"
@@ -95,6 +94,3 @@ class Line :
 for line in range(len(lines)) :
     print(line+1,Line(lines[line]).check())
 """
-
-
-print(file_variables)

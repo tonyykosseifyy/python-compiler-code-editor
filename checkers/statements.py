@@ -39,5 +39,3 @@ def checkPrint(line):
     if len(line) == 1:
         return True 
         
-
-#not (re.search(regex, line)):

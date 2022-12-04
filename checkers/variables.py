@@ -1,5 +1,3 @@
-import re 
-
 class Variable:
     def __init__(self , line, file_variables):
         self.line = line
@@ -63,7 +61,6 @@ def checkComma(line):
         if list[1] == "":
             return "TypeError: cannot unpack non-iterable int object"
 
-        ## Add 2 variables 
 
 def checkCommaAfterEquality(line):
     if "," in line[2] :
@@ -72,14 +69,11 @@ def checkCommaAfterEquality(line):
             return "SyntaxError: invalid syntax"
 
 
-def checkCommaBeforeAfter(line):
-    pass 
 
 def checkValuesToUnpack(line):
     if "," in line[2] and "," in line[0] :
         variable_list = line[0].split(",")
         values_list = line[2].split(",")
-        print(variable_list, values_list)
         if len(variable_list) > len(values_list):
             return "ValueError: too many values to unpack (expected " +  str(len(variable_list)) + ")"  
     

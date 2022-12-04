@@ -12,8 +12,10 @@ ctypes.windll.shcore.SetProcessDpiAwareness(True)
 window = tk.Tk()
 window.title("TK Code Editor")
 
-window.rowconfigure(1, minsize=500, weight=1)
+window.rowconfigure(0,minsize=500, weight=1)
+window.rowconfigure(1, minsize=200 )
 window.columnconfigure(1, minsize=500, weight=1)
+
 
 style = Style()
 style.configure('TButton', font =
@@ -31,14 +33,12 @@ background = "#2A2A2A"
 font = 'Consolas 15'
 
 
-s = {"a":"" , "b": ""}
-
 list = []
 
-for key in s :
+for key in file_variables :
     list.append(key)
 txt = " | ".join(list)
-print(txt)
+
 errors = []
 
 
@@ -63,7 +63,7 @@ def open_file():
     with open(filepath, mode="r", encoding="utf-8") as input_file:
         text = input_file.read()
         editArea.insert(tk.END, text)
-    window.title(f"Simple Text Editor - {filepath}")
+    window.title(f"TK Text Editor - {filepath}")
 
 def save_file():
     filepath = asksaveasfilename(
@@ -81,18 +81,19 @@ def save_file():
 frm_buttons = Frame(window,borderwidth=1, width=400 )
 btn_open = Button(frm_buttons, text="Open", command=open_file)
 btn_save = Button(frm_buttons, text="Save As...", command=save_file)
-btn_run = Button(frm_buttons, text="Run")
 
-output_area = tk.Frame(window, height=600, borderwidth=2 , relief=tk.RAISED, background="#2A2A2A")
-output_area.grid(row=1 , column=1,columnspan=2, sticky="nsew")
+
+output_area = tk.Frame(window, height=200, borderwidth=2 , relief=tk.RAISED, background="#2A2A2A")
+output_area.grid(row=1 , column=1, sticky="nsew" )
 
 output_lbl = Label(output_area, text="Output" , foreground="white", background="#2A2A2A")
 output_lbl.pack(side="top")
 
 
 output_text = tk.Text(output_area,font=font, foreground="red" , background="#2A2A2A")
-scrollbar = Scrollbar(output_area, command=output_text.yview)
 
+scrollbar = tk.Scrollbar(output_area, orient="vertical" ,command=output_text.yview)
+output_text['yscrollcommand'] = scrollbar.set
 
 scrollbar.pack(side='right', fill='y')
 
@@ -101,7 +102,6 @@ output_text.pack(fill=tk.BOTH)
 
 btn_open.grid(row=0, column=0, sticky="ew", padx=15, pady=30)
 btn_save.grid(row=1, column=0, sticky="ew", padx=15)
-btn_run.grid(row=2, column=0, sticky="ew", padx=15, pady=30,)
 
 
 frm_buttons.grid(row=0, column=0, sticky="ns", rowspan=2)
@@ -119,9 +119,6 @@ repl = [
     ['^\s*(\w+)\s*\((.*)\)\s*$' , comments]
 ]
 
-
-# Insert some Standard Text into the Edit Area
-##editArea.insert('1.0', "a = b")
 
 
 def search_re(pattern, text):
@@ -165,6 +162,7 @@ def outputErrors(event=None):
     
     output_text.insert("1.0" , errors_text)
     output_text.config(state="disabled") 
+    print(errors_text)
 
 def run(event=None) :
     line_text = editArea.get(1.0,tk.END)
@@ -175,14 +173,11 @@ def run(event=None) :
     indentation["required"] = False 
     indentation["block"] = "none"
     Line.line_count = 1
-    print("line text", line_text)
     for line in range(len(line_text)) :
-        print(indentation)
         if len(line_text[line]) == 0 and line_text[line] == "":
             errors.append(None)
             Line.line_count +=1  
         else : errors.append(Line(convertTabToIndent(line_text[line])).check())
-    print("errors",  errors)
 
 editArea.bind('<KeyRelease>', changes)
 editArea.bind("<Return>" , run )

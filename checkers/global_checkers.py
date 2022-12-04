@@ -20,7 +20,6 @@ def getIndentation(line):
     while line[i] == "" :
         indent += 1 
         i += 1 
-    print(line , indent)
     return indent  
 
 def stripArray(line):
@@ -31,7 +30,6 @@ def stripArray(line):
     return line
 
 def stripFromEnd(line):
-    print(line)
     if len(line) == 1 :
         return line
     i = len(line) - 1 
